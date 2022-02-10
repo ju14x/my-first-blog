@@ -22,6 +22,9 @@
     <body>
       <header class="page-header">
         <div class="container">
+          <a href="{% url 'post_new' %}" class="top-menu">
+            {% include './icons/file-earmark-plus.svg' %}
+          </a>
           <h1><a href="/">Juliax's Blog</a></h1>
           <a href="/admin" id="login">login</a>
         </div>
