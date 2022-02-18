@@ -24,12 +24,12 @@ h4 {
   font-family: "Lobster", cursive;
 }
 
-#login {
+#login, #logout {
   text-decoration: none;
   font-family: "Courier New", Courier, monospace;
   font-size: small;
   color: #000000;
-  background-color: #ffffff;
+  background-color: #fffffff8;
 }
 
 .date {
