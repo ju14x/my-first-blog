@@ -26,15 +26,20 @@
           <a href="{% url 'post_new' %}" class="top-menu">
             {% include './icons/file-earmark-plus.svg' %}
           </a>
-          <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
+          <a href="{% url 'post_draft_list' %}" class="top-menu">drafts</a>
+          <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+          {% else %}
+            <a href="{% url 'login' %}" class="top-menu" id="login">login</a>
           {% endif %}
           <h1><a href="/">Juliax's Blog</a></h1>
-          <a href="/admin" id="login">login</a>
         </div>
       </header>
       <main class="container">
         <div class="row">
-          <div class="col">{% block content %} {% endblock %}</div>
+          <div class="col">
+            {% block content %}
+            {% endblock %}
+          </div>
         </div>
       </main>
     </body>

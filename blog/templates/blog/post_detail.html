@@ -21,14 +21,22 @@
   <p>{{ post.text|linebreaksbr }}</p>
   <hr>
   {% for comment in post.comments.all %}
-  	<div class="comment">
-      <a class="btn btn-secondary" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
-		  <div class="date">{{ comment.created_date }}</div>
-		  <strong>{{ comment.author }}</strong>
-		  <p>{{ comment.text|linebreaksbr }}</p>
-	  </div>
+    {% if user.is_authenticated or comment.approved_comment %}
+      <div class="comment">
+        <div class="date">
+          {{ comment.created_date }}
+          {% if not comment.approved_comment %}
+            <a class="btn btn-secondary" href="{% url 'comment_remove' pk=comment.pk %}">Remove</a>
+            <a class="btn btn-secondary" href="{% url 'comment_approve' pk=comment.pk %}">Approve</a>
+          {% endif %}
+        </div>
+        <strong>{{ comment.author }}</strong>
+        <p>{{ comment.text|linebreaksbr }}</p>
+      </div>
+    {% endif %}
   {% empty %}
     <p> No comments here yet :(</p>
-  {% endfor %}      
+  {% endfor %}
+  <a class="btn btn-secondary" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>      
 </article>
 {% endblock %}
